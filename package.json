@@ -5,6 +5,8 @@
   "description": "Shopee Open Platform integration: daily sales sync to efloor masterdata and Shopee Ads monitoring/control, driven via an MCP server.",
   "type": "module",
   "scripts": {
+    "authorize": "node --env-file=.env scripts/authorize.mjs",
+    "auth-status": "node --env-file=.env scripts/auth-status.mjs",
     "sync-daily-sales": "node --env-file=.env scripts/sync-daily-sales.mjs",
     "weekly-ads-review": "node --env-file=.env scripts/weekly-ads-review.mjs",
     "check-ads-eligibility": "node --env-file=.env scripts/check-ads-eligibility.mjs",

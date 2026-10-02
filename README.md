@@ -10,9 +10,10 @@ design, safety gates, and phased rollout.
 
 ## Status
 
-Scaffold only — directory structure and `.env` skeleton are in place.
-Implementation (Shopee client, auth/token handling, Sheets sync, MCP server)
-comes next, once credentials below are filled in.
+`.env` filled in locally. Shopee client (`src/shopee/client.js`) and the
+shop-authorization/token-refresh flow (`src/shopee/auth.js`) are implemented
+and untested against a real app — next step is running the authorize flow
+below. Sheets sync, orders, ads, and the MCP server are still stubs.
 
 ## Setup
 
@@ -24,14 +25,17 @@ comes next, once credentials below are filled in.
    - `SHOPEE_REDIRECT_URL` — the redirect URL registered on the app, used
      during the one-time shop authorization.
    - `MASTERDATA_SHEET_ID` — the efloor masterdata spreadsheet's id.
-2. Create a Google Cloud service account, download its JSON key to
+2. Run `npm run authorize` — prints a URL. Visit it as the efloor Shopee shop
+   owner and approve access. Shopee redirects to `SHOPEE_REDIRECT_URL` with
+   `code` and `shop_id` query params; re-run with
+   `npm run authorize -- --code <code> --shop-id <shop_id>` to exchange them
+   for the first token pair, saved to `secrets/shopee-tokens.json`.
+3. `npm run auth-status` any time to check token/refresh expiry.
+   `npm run refresh-token` forces a refresh cycle (useful to confirm rotation
+   is actually being persisted — run it twice in a row and diff the file).
+4. Create a Google Cloud service account, download its JSON key to
    `secrets/gcp-service-account.json` (gitignored), and share the masterdata
    spreadsheet with the service account's email as Editor.
-3. Run `npm install` once dependencies are added (Shopee client + Google
-   APIs client library).
-4. Complete the one-time Shopee shop authorization (OAuth-style authorize
-   redirect) to produce the first `access_token`/`refresh_token` pair —
-   stored in `secrets/shopee-tokens.json` (gitignored), never in `.env`.
 
 **Never commit `.env` or anything under `secrets/`** — both are gitignored.
 
