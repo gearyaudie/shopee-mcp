@@ -1,0 +1,18 @@
+{
+  "name": "shopee-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shopee Open Platform integration: daily sales sync to efloor masterdata and Shopee Ads monitoring/control, driven via an MCP server.",
+  "type": "module",
+  "scripts": {
+    "sync-daily-sales": "node --env-file=.env scripts/sync-daily-sales.mjs",
+    "weekly-ads-review": "node --env-file=.env scripts/weekly-ads-review.mjs",
+    "check-ads-eligibility": "node --env-file=.env scripts/check-ads-eligibility.mjs",
+    "refresh-token": "node --env-file=.env scripts/refresh-token.mjs",
+    "mcp-server": "node --env-file=.env src/mcp/server.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=20.6.0"
+  }
+}
