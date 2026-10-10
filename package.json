@@ -8,6 +8,7 @@
     "debug-env": "node --env-file=.env scripts/debug-env.mjs",
     "authorize": "node --env-file=.env scripts/authorize.mjs",
     "auth-status": "node --env-file=.env scripts/auth-status.mjs",
+    "list-recent-orders": "node --env-file=.env scripts/list-recent-orders.mjs",
     "sync-daily-sales": "node --env-file=.env scripts/sync-daily-sales.mjs",
     "weekly-ads-review": "node --env-file=.env scripts/weekly-ads-review.mjs",
     "check-ads-eligibility": "node --env-file=.env scripts/check-ads-eligibility.mjs",
